@@ -46,7 +46,7 @@
     You have {{ 6 - attempts }} attempts remaining.
   </p>
   {% if guessed_letters == [] %}
-    <p>{{'_ ' * word|length}}</p>
+    <p>{{ '_ ' * word|length }}</p>
   {% endif %}
   <p>{{ result }}</p>
   {% if matches == 1 %}
@@ -62,7 +62,10 @@
     <input type="submit" class="btn btn-info" value="Guess">
   </form>
   <div class="guesses text-center">
-    <h4> Guessed: {{ guessed_letters }} </h4>
+    {% if guess == guessed_letters %}
+    <h3>You've already guessed that letter!</h3>
+      {% endif %}
+    <h4> Guessed: {{ " ".join(guessed_letters) }} </h4>
   </div>
 {% endif %}
 </div>
