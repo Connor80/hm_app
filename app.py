@@ -51,20 +51,28 @@ def game():
     guess = request.form['guess'].upper()
     guessed_letters = session['guessed_letters']
     status = session['status']
+    already = ""
     result = check_guess(word, guessed_letters, guess)
 
     if guess not in word:
-        session['incorrect'] += 1
-        session['attempts'] += 1
-        session['guessed_letters'].append(guess)
+        if guess in session['guessed_letters']:
+            already = "You've already guessed that letter!"
+        else:
+            session['incorrect'] += 1
+            session['attempts'] += 1
+            session['guessed_letters'].append(guess)
     elif guess in word:
-        session['guessed_letters'].append(guess)
+        if guess in session['guessed_letters']:
+            already = "You've already guessed that letter!"
+        else:
+            session['guessed_letters'].append(guess)
+
 
     return render_template('play.html', word = word, guess = guess,
         attempts = session['attempts'],
         guessed_letters = session['guessed_letters'],
         incorrect = session['incorrect'], status = status,
-        matches = session['matches'], result = result)
+        matches = session['matches'], result = result, already = already)
 
 @app.route('/game', methods=['POST'])
 def letters():

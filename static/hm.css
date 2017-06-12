@@ -11,6 +11,11 @@ p {
   text-align: center;
 }
 
+.already {
+  color: red;
+  background:rgba(0,0,0,0);
+}
+
 .guesses {
   background:rgba(0,0,0,0);
 }

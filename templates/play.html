@@ -61,11 +61,11 @@
     pattern="[A-Za-z]" name="guess" autocomplete="off">
     <input type="submit" class="btn btn-info" value="Guess">
   </form>
+  <div class="already text-center">
+    <h3>{{ already }}</h3>
+  </div>
   <div class="guesses text-center">
-    {% if guess == guessed_letters %}
-    <h3>You've already guessed that letter!</h3>
-      {% endif %}
-    <h4> Guessed: {{ " ".join(guessed_letters) }} </h4>
+    <h4>Guessed: {{ " ".join(guessed_letters) }}</h4>
   </div>
 {% endif %}
 </div>
