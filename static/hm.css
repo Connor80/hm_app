@@ -136,11 +136,6 @@ p {
   -webkit-border-radius: 110px 110px 0 0;
 }
 
-div {
-  margin: 0;
-  padding: 0;#A4CA39
-}
-
 div div, .head, .body {
   background: #A4CA39;
   position: relative;
