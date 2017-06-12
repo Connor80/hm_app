@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="gallows-container">
+  <section class="gallows">
+    <section class="top_frame">
+      <section class="side_frame">
+      </section>
+      <section class="base_frame"></section>
+      <section class="angle1"></section>
+      <section class="angle2"></section>
+    </section>
+  </section>
+</div>
+
+{% if not solved and attempts < 6 %}
+<div class="guess-container">
+<p>The word contains {{word|length}} letters.
+  </p>
+<p>{{'_ ' * word|length}}</p>
+
+
+  <form action="." method="POST" class="form-inline vspace text-center">
+    <div class="form-group">
+      <input class=" text-center input-lg text-uppercase" maxlength="1" size="3"
+      name="guessed_letters" autocomplete="off" autofocus>
+    </div>
+    <input type="submit">
+  </form>
+
+
+
+  {% endif %}
+
+
+
+
+{% endblock %}

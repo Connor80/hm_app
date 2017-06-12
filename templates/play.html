@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block gallows %}
+<div class="gallows-container">
+  <section class="gallows">
+    <section class="top_frame">
+      <section class="side_frame">
+        {% if incorrect >= 1 %}
+          <div class="head">
+            <div class="r_ant"></div>
+            <div class="l_ant"></div>
+            <div class="r_eye"></div>
+            <div class="l_eye"></div>
+          </div>
+        {% if incorrect >= 2 %}
+          <div class="body">
+        {% if incorrect >= 3 %}
+            <div class="r_arm"></div>
+        {% if incorrect >= 4 %}
+            <div class="l_arm"></div>
+        {% if incorrect >= 5 %}
+            <div class="r_leg"></div>
+        {% if incorrect >= 6 %}
+            <div class="l_leg"></div>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+          </div>
+        {% endif %}
+        {% endif %}
+      </section>
+      <section class="base_frame"></section>
+      <section class="angle1"></section>
+      <section class="angle2"></section>
+    </section>
+  </section>
+</div>
+{% endblock %}
+
+{% block guesses %}
+{% if attempts < 6 and result != word %}
+<div class="guess-container">
+  <p>
+    The word contains {{ word|length }} letters.
+    You have {{ 6 - attempts }} attempts remaining.
+  </p>
+  {% if guessed_letters == [] %}
+    <p>{{'_ ' * word|length}}</p>
+  {% endif %}
+  <p>{{ result }}</p>
+  {% if matches == 1 %}
+    <p>There is one {{ guess }}.</p>
+  {% endif %}
+  {% if matches > 1 %}
+    <p>There are {{ matches }} {{ guess }}'s</p>
+  {% endif %}
+  <form action="{{ url_for('game') }}" method="POST" class="form-inline vspace
+  text-center">
+    <input class="input-lg text-uppercase text-center" maxlength="1" size="1"
+    pattern="[A-Za-z]" name="guess" autocomplete="off">
+    <input type="submit" class="btn btn-info" value="Guess">
+  </form>
+  <div class="guesses text-center">
+    <h4> Guessed: {{ guessed_letters }} </h4>
+  </div>
+{% endif %}
+</div>
+
+{% if result == word %}
+<div class="text-center congrats">
+  <h4>Congrats! The word was {{ word }}!</h4>
+</div>
+{% endif %}
+
+{% if attempts == 6 %}
+<div class="text-center game_over">
+  <h4>The android was hanged! The word was {{ word }}.</h4>
+</div>
+{% endif %}
+
+<div class="text-center">
+  <a href="/" class="btn btn-primary" role="button">
+    <i class="fa fa-home" aria-hidden="true"></i> Home
+  </a>
+</div>
+
+
+{% endblock %}

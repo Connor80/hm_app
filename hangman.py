@@ -1,3 +1,5 @@
+""" Command Line version of the game """
+
 import random
 import sys
 
@@ -52,7 +54,7 @@ hangman = [
 / \   |
    ___|___\n"""
 ]
-    
+
 
 def get_word():
     word_list = ["fruit", "train", "vacation", "hypnotist", "teacher",
@@ -76,7 +78,7 @@ def get_word():
                  ]
     return random.choice(word_list).upper()
 
-         
+
 def main():
     word = get_word()
     incorrect = 0
@@ -143,14 +145,14 @@ def check_guess(word, guessed_letters, guess):
             status += "_"
         if letter == guess:
             matches += 1
-           
+
     if matches == 1:
         print ("The word contains the letter " + str(guess))
     elif matches > 1:
         print ("The word contains " + str(matches) + " letter " + str(guess) + "'s")
     else:
         print ("Sorry, the word does not contain the letter " + str(guess) + ".")
-    
+
     return status
 
 

@@ -1,4 +1,68 @@
+/* Text */
+h1 {
+  text-align: center;
+}
+
+h2 {
+
+}
+
+p {
+  text-align: center;
+}
+
+.guesses {
+  background:rgba(0,0,0,0);
+}
+
+.congrats {
+  padding-top: 100px;
+}
+
+.game_over {
+  padding-top: 100px;
+}
+
+.footer{
+  position: fixed;
+  text-align: left;
+  bottom: 0px;
+  width: 100%;
+  background:rgba(0,0,0,0);
+}
+
+.CT:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.CT:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+/* Layout */
+.gallows-container {
+  padding-top: 10px;
+  padding-bottom: 100px;
+}
+
+.guess-container {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
 /* Gallows */
+.gallows {
+	max-width: 200px;
+	height: 350px;
+	margin: auto;
+	display: block;
+}
+
 .top_frame {
 	position: relative;
 	margin: auto;
@@ -48,6 +112,7 @@
 	background-color: black;
 	z-index: -1;
 }
+
 
 /* Android */
 .android {
