@@ -3,7 +3,14 @@
 {% block gallows %}
   <div class="text-center" id="header">
     <h2 class="header">Guess the secret word before the android is hanged!</h2>
-    <a href="/play" class="btn btn-success" role="button">Let's Play!</a>
+    <form action="/play" method="POST">
+    <button type="submit" class="btn btn-success" value="Easy" name="submit">
+      Let's Play!</br>Easy
+    </button>
+    <button type="submit" class="btn btn-danger" value="Hard" name="submit">
+    Let's Play!</br>Hard
+    </button>
+  </form>
   </div>
 	<section class="gallows">
 		<section class="top_frame">
@@ -28,5 +35,4 @@
 			<section class="angle2"></section>
 		</section>
 	</section>
-
 {% endblock %}

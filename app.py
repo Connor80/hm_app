@@ -31,8 +31,8 @@ def index():
     session.clear()
     session['word'] = get_word()
     word = session['word']
-    return render_template('hm.html', attempts = 0, word = word,
-        incorrect = 0)
+
+    return render_template('hm.html', word = word)
 
 @app.route('/play', methods=['GET', 'POST'])
 def play():
@@ -41,9 +41,15 @@ def play():
     session['attempts'] = 0
     session['guessed_letters'] = []
     session['status'] = "_ " * len(word)
+    if request.method == "POST":
+        if request.form['submit'] == 'Easy':
+            session['easy'] = True
+        elif request.form['submit'] == 'Hard':
+            session['easy'] = False
+
     return render_template('play.html', attempts = 0, word = word,
         incorrect = 0, guessed_letters = [], matches = 0,
-        status = "_ " * len(word))
+        status = "_ " * len(word), easy = session['easy'])
 
 @app.route('/game', methods=['POST'])
 def game():
@@ -52,8 +58,8 @@ def game():
     guessed_letters = session['guessed_letters']
     status = session['status']
     already = ""
+    easy = session['easy']
     result = check_guess(word, guessed_letters, guess)
-
     if guess not in word:
         if guess in session['guessed_letters']:
             already = "You've already guessed that letter!"
@@ -67,18 +73,12 @@ def game():
         else:
             session['guessed_letters'].append(guess)
 
-
-    return render_template('play.html', word = word, guess = guess,
-        attempts = session['attempts'],
+    return render_template('play.html', word = word,
+        guess = guess, attempts = session['attempts'],
         guessed_letters = session['guessed_letters'],
         incorrect = session['incorrect'], status = status,
-        matches = session['matches'], result = result, already = already)
-
-@app.route('/game', methods=['POST'])
-def letters():
-    if request.method == 'POST':
-        letters = request.form['guessed_letters']
-        return letters
+        matches = session['matches'], result = result,
+        already = already, easy = easy)
 
 def check_guess(word, guessed_letters, guess):
     session['status'] = ""
